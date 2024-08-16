@@ -132,7 +132,7 @@ Specify validation rules directly in your HTML using the `Gdev-props` attribute 
 
 ```html
 <div class="gdev-field-wrapper">
-    <input type="email" Gdev-props='{"type":"email","name":"email", "provider": ["gmail", "outlook"] />
+    <input type="email" Gdev-props='{"type":"email","name":"email", "provider": ["gmail", "outlook"]}' />
     <div class="gdev-error"></div>
 </div>
 ```
