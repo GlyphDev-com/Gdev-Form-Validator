@@ -1,8 +1,13 @@
+# Gdev Form Validator
+## Overview
+
 [![gdev](https://i.postimg.cc/90SKHP2w/removal-ai-68a74532-f4d0-4b18-87c3-ffe7a11deffe-screenshot-2024-06-20-075650-19-Z4-RR.png, "gdev")](https://gdev.com)
 pour la version francaise de ce document, visite notre site [gdev.com](https://gdev.com/resources/gdev_form_validator)
-# Gdev Form Validator
+
 
 Gdev Form Validator is a dynamic and customizable form validation package designed to make form validation easy and flexible for developers. It provides multiple methods to handle form validation, including auto-validation, specific form validation, and validation as the user types both in English and French.
+
+`NOTE: Make sure you write your script in a module environment`
 
 ## Installation
 
@@ -23,7 +28,9 @@ To use the package via CDN, include the following in your HTML:
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gdev_form_validator@latest/dist/style.css">
 
 <!-- JavaScript for validation -->
-<script src="https://cdn.jsdelivr.net/npm/gdev_form_validator@latest/dist/validator.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gdev_form_validator@latest/dist/validator.bundle.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gdev_form_validator@latest/dist/autovalidate.bundle.js"></script>
+
 ```
 ## Validation Response
 when validation is completed, the package returns the response as an object in its simplest form so the developer can foward users input to the backend as object `values:{}` very easily.
@@ -54,9 +61,13 @@ when validation is completed, the package returns the response as an object in i
 
 To automatically validate all forms on a page:
 
-1. Include the auto-validator script in your HTML:
+1. Include the auto-validator script in your HTML body:
     ```html
+    <!-- CDN -->
     <script src="https://cdn.jsdelivr.net/npm/gdev_form_validator@latest/dist/autovalidate.js"></script>
+
+    <!-- NPM -->
+    <script src="path to the installed package ./dist/autovalidate.js"></script>
     ```
     make sure to provide unique id for each form to be validated and `Gdev-lang = "fr or en"` attribute for language to report errors.
 
@@ -66,7 +77,7 @@ To automatically validate all forms on a page:
 
     ```javascript
     const form1 = document.getElementById('your-form-id');
-    form1.addEventListener('onValidationComplete', function(e) {
+    form1.addEventListener('onValidationComplete', e => {
       console.log(window.validationResponse.your-form-id);
     });
     ```
@@ -75,16 +86,20 @@ To automatically validate all forms on a page:
 
 To validate a specific form:
 
-1. Import the validator script or install the package using npm as shown above:
+1. Import the validator script:
     ```html
+    <!-- CDN -->
     <script src="https://cdn.jsdelivr.net/npm/gdev_form_validator@latest/dist/validator.js"></script>
+
+    <!-- NPM -->
+    <script src="path to the installed package ./dist/validator.js"></script>
     ```
 
 2. Create a validator instance and call the `validate` method:
     
     ```javascript
     
-    import { FormValidation } from 'gdev_form_validator';
+    import { FormValidation } from 'gdev_form_validator'; //Optiomal: import if your working on non-browser environments (like Node.js)
 
     const form = document.getElementById('yourFormId');
     const validator = new FormValidation(form, 'en'); // 'en' or 'fr' for language
